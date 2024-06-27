@@ -1,10 +1,11 @@
 import argparse
 import requests
-import os
+import time
 
 APP_URI = 'https://api-cloud.browserstack.com/app-automate/espresso/v2/app'
 TEST_URI = 'https://api-cloud.browserstack.com/app-automate/espresso/v2/test-suite'
 BUILD_URI = 'https://api-cloud.browserstack.com/app-automate/espresso/v2/build'
+STATUS_URI = 'https://api-cloud.browserstack.com/app-automate/espresso/v2/builds/{}'
 
 def main(args: argparse.Namespace) -> None:
     app_files = {
@@ -65,6 +66,29 @@ def main(args: argparse.Namespace) -> None:
         exit(1)
 
     if build_response_json['message'] != 'Success':
+        exit(1)
+
+    prev_duration = 0
+    while True:
+        time.sleep(10)
+        status_response = requests.get(
+            STATUS_URI.format(build_response_json['build_id']),
+            auth=(args.username, args.access_key)
+        )
+        status_response_json = status_response.json()
+        duration = status_response_json['duration']
+
+        print(status_response)
+        print(status_response_json)
+
+        if not status_response.ok:
+            exit(1)
+
+        if prev_duration == duration:
+            break
+        prev_duration = duration
+
+    if status_response_json['status'] != 5:
         exit(1)
 
 if __name__ == '__main__':
