@@ -64,7 +64,7 @@ jobs:
       run: ./gradlew assembleAndroidTest
 
     - name: Run tests on BrowserStack
-      run: python3 -m script.automation.browserstack
+      run: python3 /script/automation/browserstack.py
         --username "${{secrets.BROWSERSTACK_USERNAME}}"
         --access_key "${{secrets.BROWSERSTACK_ACCESS_KEY}}"
         --project_name "Cheetah-Migration-Test"
