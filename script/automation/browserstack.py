@@ -69,7 +69,7 @@ def main(args: argparse.Namespace) -> None:
         exit(1)
 
     while True:
-        time.sleep(10)
+        time.sleep(60)
         status_response = requests.get(
             STATUS_URI.format(build_response_json['build_id']),
             auth=(args.username, args.access_key)
@@ -86,7 +86,7 @@ def main(args: argparse.Namespace) -> None:
         if status != 'queued' and status != 'running':
             break
 
-    if status != 'success':
+    if status != 'passed':
         exit(1)
 
 if __name__ == '__main__':
