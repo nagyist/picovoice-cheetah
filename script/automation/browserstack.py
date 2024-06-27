@@ -68,7 +68,6 @@ def main(args: argparse.Namespace) -> None:
     if build_response_json['message'] != 'Success':
         exit(1)
 
-    prev_duration = 0
     while True:
         time.sleep(10)
         status_response = requests.get(
@@ -76,7 +75,7 @@ def main(args: argparse.Namespace) -> None:
             auth=(args.username, args.access_key)
         )
         status_response_json = status_response.json()
-        duration = status_response_json['duration']
+        status = status_response_json['status']
 
         print(status_response)
         print(status_response_json)
@@ -84,11 +83,10 @@ def main(args: argparse.Namespace) -> None:
         if not status_response.ok:
             exit(1)
 
-        if prev_duration == duration:
+        if status != 'queued' and status != 'running':
             break
-        prev_duration = duration
 
-    if status_response_json['status'] != 5:
+    if status != 'success':
         exit(1)
 
 if __name__ == '__main__':
