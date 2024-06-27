@@ -18,10 +18,8 @@ def main(args: argparse.Namespace) -> None:
     )
     app_response_json = app_response.json()
 
-    print(app_response)
-    print(app_response_json)
-
     if not app_response.ok:
+        print('App Upload Failed', app_response_json)
         exit(1)
 
     test_files = {
@@ -34,10 +32,8 @@ def main(args: argparse.Namespace) -> None:
     )
     test_response_json = test_response.json()
 
-    print(test_response)
-    print(test_response_json)
-
     if not test_response.ok:
+        print('Test Upload Failed', test_response_json)
         exit(1)
 
     build_headers = {
@@ -59,13 +55,12 @@ def main(args: argparse.Namespace) -> None:
     )
     build_response_json = build_response.json()
 
-    print(build_response)
-    print(build_response_json)
-
     if not build_response.ok:
+        print('Build Failed', build_response_json)
         exit(1)
 
     if build_response_json['message'] != 'Success':
+        print('Build Unsuccessful')
         exit(1)
 
     while True:
@@ -77,15 +72,14 @@ def main(args: argparse.Namespace) -> None:
         status_response_json = status_response.json()
         status = status_response_json['status']
 
-        print(status_response)
-        print(status_response_json)
-
         if not status_response.ok:
+            print('Status Request Failed', status_response_json)
             exit(1)
 
         if status != 'queued' and status != 'running':
             break
 
+    print('Status:', status)
     if status != 'passed':
         exit(1)
 
