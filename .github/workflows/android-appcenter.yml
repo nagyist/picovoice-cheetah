@@ -69,7 +69,7 @@ jobs:
         --access_key "${{secrets.BROWSERSTACK_ACCESS_KEY}}"
         --project_name "Cheetah-Migration-Test"
         --app_path "cheetah-test-app/build/outputs/apk/debug/cheetah-test-app-debug.apk"
-        --test_path "cheetah-test-app/build/outputs/apk/androidTest/debug/cheetah-test-app-debug.apk"
+        --test_path "cheetah-test-app/build/outputs/apk/androidTest/debug/cheetah-test-app-debug-androidTest.apk"
 
   build-integ:
     name: Run Android Integration Tests on AppCenter

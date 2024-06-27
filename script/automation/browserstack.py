@@ -77,7 +77,4 @@ if __name__ == '__main__':
     parser.add_argument('--test_path', required=True)
     args = parser.parse_args()
 
-    os.system('ls')
-    os.system('ls cheetah-test-app/build/outputs/apk/androidTest/debug/')
-
-    # main(args)
+    main(args)
