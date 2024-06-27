@@ -25,13 +25,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Set up Node.js LTS
-      uses: actions/setup-node@v3
+    - name: Installing Python
+      uses: actions/setup-python@v5
       with:
-        node-version: lts/*
-
-    - name: Install AppCenter CLI
-      run: npm install -g appcenter-cli
+        python-version: '3.10'
+    - run:
+        pip3 install requests
 
     - name: set up JDK 11
       uses: actions/setup-java@v3
@@ -64,15 +63,13 @@ jobs:
     - name: Build androidTest
       run: ./gradlew assembleAndroidTest
 
-    - name: Run tests on AppCenter
-      run: appcenter test run espresso
-        --token ${{secrets.APPCENTERAPITOKEN}}
-        --app "Picovoice/Cheetah-Android"
-        --devices "Picovoice/android-min-max"
-        --app-path cheetah-test-app/build/outputs/apk/debug/cheetah-test-app-debug.apk
-        --test-series "cheetah-android"
-        --locale "en_US"
-        --build-dir cheetah-test-app/build/outputs/apk/androidTest/debug
+    - name: Run tests on BrowserStack
+      run: python3 -m script.automation.browserstack
+        --username "${{secrets.BROWSERSTACK_USERNAME}}"
+        --access_key "${{secrets.BROWSERSTACK_ACCESS_KEY}}"
+        --project_name "Cheetah-Migration-Test"
+        --app_path "cheetah-test-app/build/outputs/apk/debug/cheetah-test-app-debug.apk"
+        --test_path "cheetah-test-app/build/outputs/apk/androidTest/debug/cheetah-test-app-debug.apk"
 
   build-integ:
     name: Run Android Integration Tests on AppCenter
