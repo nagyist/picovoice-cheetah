@@ -52,7 +52,7 @@ jobs:
           -workspace CheetahAppTest.xcworkspace
           -sdk iphoneos
           -scheme CheetahAppTest
-          -destination "platform=IOS, name=Any iOS Device"
+          -destination "platform=IOS,name=Any iOS Device"
           -derivedDataPath ddp
           CODE_SIGNING_ALLOWED=NO
 
@@ -60,7 +60,7 @@ jobs:
         run: xcrun xcodebuild archive
           -project CheetahAppTest.xcodeproj
           -scheme CheetahAppTest
-          -destination "platform=IOS, name=Any iOS Device"
+          -destination "platform=IOS,name=Any iOS Device"
           -archivePath ddp/Build/Products/Debug-iphoneos/CheetahAppTest.xcarchive
           CODE_SIGNING_ALLOWED=NO
 
