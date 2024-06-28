@@ -64,7 +64,8 @@ jobs:
       run: ./gradlew assembleAndroidTest
 
     - name: Run tests on BrowserStack
-      run: python3 ../../../script/automation/browserstack-espresso.py
+      run: python3 ../../../script/automation/browserstack.py
+        --type espresso
         --username "${{secrets.BROWSERSTACK_USERNAME}}"
         --access_key "${{secrets.BROWSERSTACK_ACCESS_KEY}}"
         --project_name "Cheetah-Migration-Test"
@@ -117,7 +118,8 @@ jobs:
       run: ./gradlew assembleReleaseAndroidTest -DtestBuildType=integ
 
     - name: Run tests on BrowserStack
-      run: python3 ../../../script/automation/browserstack-espresso.py
+      run: python3 ../../../script/automation/browserstack.py
+        --type espresso
         --username "${{secrets.BROWSERSTACK_USERNAME}}"
         --access_key "${{secrets.BROWSERSTACK_ACCESS_KEY}}"
         --project_name "Cheetah-Migration-Test-2"
