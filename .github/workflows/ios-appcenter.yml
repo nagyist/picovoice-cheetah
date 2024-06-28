@@ -55,13 +55,6 @@ jobs:
           -derivedDataPath ddp
           CODE_SIGNING_ALLOWED=NO
 
-      - name: XCode Archive
-        run: xcrun xcodebuild archive
-          -project CheetahAppTest.xcodeproj
-          -scheme CheetahAppTest
-          -archivePath ddp/Build/Products/Debug-iphoneos/CheetahAppTest.xcarchive
-          CODE_SIGNING_ALLOWED=NO
-
       - name: Zipping Tests
         run: zip -r ddp/Build/Products/Debug-iphoneos/CheetahAppTest.zip ddp/Build/Products/Debug-iphoneos/CheetahAppTest.app/
 
