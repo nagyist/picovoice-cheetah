@@ -66,14 +66,14 @@ jobs:
         run: cd ddp/Build/Products/Debug-iphoneos/ &&
           mkdir Payload &&
           cp -r CheetahAppTestUITests-Runner.app Payload &&
-          zip -r CheetahAppTestUITests.ipa Payload &&
+          zip -r CheetahAppTestUITests.zip Payload &&
           rm -r Payload
 
       - name: Testing ipa
         run: unzip -vl ddp/Build/Products/Debug-iphoneos/CheetahAppTest.ipa
 
       - name: Testing zip
-        run: unzip -vl ddp/Build/Products/Debug-iphoneos/CheetahAppTestUITests.ipa
+        run: unzip -vl ddp/Build/Products/Debug-iphoneos/CheetahAppTestUITests.zip
 
       - name: Run tests on BrowserStack
         run: python3 ../../../script/automation/browserstack-xcuitest.py
@@ -81,4 +81,4 @@ jobs:
           --access_key "${{secrets.BROWSERSTACK_ACCESS_KEY}}"
           --project_name "Cheetah-Migration-Test-iOS"
           --app_path "ddp/Build/Products/Debug-iphoneos/CheetahAppTest.ipa"
-          --test_path "ddp/Build/Products/Debug-iphoneos/CheetahAppTestUITests.ipa"
+          --test_path "ddp/Build/Products/Debug-iphoneos/CheetahAppTestUITests.zip"
