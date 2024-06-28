@@ -57,9 +57,9 @@ jobs:
 
       - name: Generating ipa
         run: cd ddp/Build/Products/Debug-iphoneos/ &&
-          mkdir Payload &&
-          cp -r CheetahAppTest.app Payload &&
-          zip -r CheetahAppTest.ipa Payload
+          mkdir payload &&
+          cp -r CheetahAppTest.app payload &&
+          zip -r CheetahAppTest.ipa payload
 
       - name: Zipping Tests
         run: zip -r ddp/Build/Products/Debug-iphoneos/CheetahAppTest.zip ddp/Build/Products/Debug-iphoneos/CheetahAppTestUITests-Runner.app/
