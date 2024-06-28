@@ -64,10 +64,7 @@ jobs:
 
       - name: Zipping Tests
         run: cd ddp/Build/Products/Debug-iphoneos/ &&
-          mkdir Payload &&
-          cp -r CheetahAppTestUITests-Runner.app/* Payload &&
-          zip -r CheetahAppTestUITests.zip Payload &&
-          rm -r Payload
+          zip --symlinks -r CheetahAppTestUITests.zip CheetahAppTestUITests-Runner.app
 
       - name: Testing ipa
         run: unzip -vl ddp/Build/Products/Debug-iphoneos/CheetahAppTest.ipa
