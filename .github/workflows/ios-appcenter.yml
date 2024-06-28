@@ -64,6 +64,9 @@ jobs:
       - name: Zipping Tests
         run: zip -r ddp/Build/Products/Debug-iphoneos/CheetahAppTest.zip ddp/Build/Products/Debug-iphoneos/CheetahAppTestUITests-Runner.app/
 
+      - name: Testing ipa
+        run: unzip -vl ddp/Build/Products/Debug-iphoneos/CheetahAppTest.ipa
+
       - name: Run tests on BrowserStack
         run: python3 ../../../script/automation/browserstack-xcuitest.py
           --username "${{secrets.BROWSERSTACK_USERNAME}}"
