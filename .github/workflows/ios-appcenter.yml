@@ -66,12 +66,6 @@ jobs:
         run: cd ddp/Build/Products/Debug-iphoneos/ &&
           zip --symlinks -r CheetahAppTestUITests.zip CheetahAppTestUITests-Runner.app
 
-      - name: Testing ipa
-        run: unzip -vl ddp/Build/Products/Debug-iphoneos/CheetahAppTest.ipa
-
-      - name: Testing zip
-        run: unzip -vl ddp/Build/Products/Debug-iphoneos/CheetahAppTestUITests.zip
-
       - name: Run tests on BrowserStack
         run: python3 ../../../script/automation/browserstack.py
           --type xcuitest
