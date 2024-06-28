@@ -78,7 +78,7 @@ def main(args: argparse.Namespace) -> None:
         print('Build Unsuccessful')
         exit(1)
 
-    print('View build results at https://app-automate.browserstack.com/dashboard/v2/builds/'.format(build_response_json['build_id']))
+    print('View build results at https://app-automate.browserstack.com/dashboard/v2/builds/{}'.format(build_response_json['build_id']))
 
     while True:
         time.sleep(60)
