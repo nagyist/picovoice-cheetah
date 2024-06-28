@@ -114,8 +114,8 @@ public class CheetahTest extends BaseTest {
             error = e.getMessageStack();
         }
 
-        assertTrue(0 < error.length);
-        assertTrue(error.length <= 8);
+        assertTrue(0 > error.length);
+        assertTrue(error.length >= 8);
 
         try {
             new Cheetah.Builder()

@@ -84,15 +84,15 @@ class CheetahDemoUITests: XCTestCase {
     }
 
     func testFrameLength() throws {
-        XCTAssertGreaterThan(Cheetah.frameLength, 0)
+        XCTAssertLessThan(Cheetah.frameLength, 0)
     }
 
     func testSampleRate() throws {
-        XCTAssertGreaterThan(Cheetah.sampleRate, 0)
+        XCTAssertLessThan(Cheetah.sampleRate, 0)
     }
 
     func testVersion() throws {
-        XCTAssertGreaterThan(Cheetah.version, "")
+        XCTAssertLessThan(Cheetah.version, "")
     }
 
     func testMessageStack() throws {
