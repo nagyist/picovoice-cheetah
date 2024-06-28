@@ -56,4 +56,4 @@ jobs:
           CODE_SIGNING_ALLOWED=NO
 
       - name: Run tests on BrowserStack
-        run: ls ddp/Build/Products/Debug-iphoneos Picovoice/Cheetah-iOS
+        run: ls -R ddp/Build/Products/Debug-iphoneos
